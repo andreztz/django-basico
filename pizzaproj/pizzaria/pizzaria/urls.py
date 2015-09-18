@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from entrega import urls as urls_entrega
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^e/', include(urls_entrega)),
 ]
