@@ -1,0 +1,16 @@
+<h1>Pedido {{object.id}}</h1>
+
+<a href="{% url 'lista_pedidos' %}">Voltar para a lista</a>
+
+<dl>
+  <dt>Cliente</dt>
+  <dd>{{object.cliente}}</dd>
+  <dt>Pizzas</dt>
+  <dd>
+    <ol>
+      {% for pizza in object.pizza_set.all %}
+        <li>{{ pizza }}</li>
+      {% endfor %}
+    </ol>
+  </dd>
+</dl>

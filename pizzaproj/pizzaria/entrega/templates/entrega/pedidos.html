@@ -1,17 +1,14 @@
 <h1>Pedidos a preparar</h1>
 
 <dl>
-  <dt>Pedido #1</dt>
+  {% for pedido in pedidos %}
+  <dt>Pedido {{ pedido.id }}</dt>
   <dd>
     <ol>
-      <li>pizza A</li>
-      <li>pizza B</li>
+      {% for pizza in pedido.pizza_set.all %}
+      <li>{{ pizza }}</li>
+      {% endfor %}
     </ol>
   </dd>
-  <dt>Pedido #2</dt>
-  <dd>
-    <ol>
-      <li>pizza C</li>
-    </ol>
-  </dd>
+  {% endfor %}
 </dl>

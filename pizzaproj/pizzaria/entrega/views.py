@@ -2,6 +2,10 @@ import time
 
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+
+from entrega import models
 
 # nossa primeira view
 def relogio(request):
@@ -15,4 +19,14 @@ def relogio_html(request):
 
 def pedidos(request):
     """view que mostra o template pedidos.html"""
-    return render(request, 'entrega/pedidos.html')
+    res = models.Pedido.objects.all()
+    contexto = {'pedidos': res}
+    return render(request, 'entrega/pedidos.html',
+                  contexto)
+
+class ListaPedidos(ListView):
+    model = models.Pedido
+    #queryset = models.Pedido.objects.filter(partida__???=True)
+
+class DetalhePedido(DetailView):
+    model = models.Pedido
