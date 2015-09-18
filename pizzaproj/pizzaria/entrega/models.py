@@ -9,6 +9,7 @@ class Cliente(models.Model):
     logradouro = models.CharField(max_length=32)
     numero = models.PositiveIntegerField('número')
     complemento = models.CharField(max_length=32, blank=True)
+    fidelidade = models.PositiveIntegerField(default=0)
     obs = models.TextField(blank=True)
 
     def __str__(self):
@@ -52,7 +53,9 @@ class Pizza(models.Model):
     obs = models.CharField(max_length=256, blank=True)
 
     def __str__(self):
+        sabor = self.get_sabor_display()
         if self.sabor2:
-            return '½ {}, ½ {}'.format(self.sabor, self.sabor2)
+            sabor2 = self.get_sabor2_display()
+            return '1/2 {}, 1/2 {}'.format(sabor, sabor2)
         else:
-            return self.sabor
+            return sabor
